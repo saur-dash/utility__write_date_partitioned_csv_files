@@ -2,3 +2,9 @@ __pycache__
 exports
 csv
 source_files
+csv_to_manifest_fields.py
+generate_field_headers.py
+partition_csv.py
+pymongo_event_export.py
+regex.py
+tempCodeRunnerFile.py
