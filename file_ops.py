@@ -122,10 +122,7 @@ def create_dataframe_from_csv(file_paths):
     return df
 
 
-def create_partitioned_csvs_from_dataframe(df,
-                                           output_path,
-                                           filename,
-                                           time_dimension):
+def create_partitioned_csv_files(df, output_path, filename, time_dimension):
 
     cols = df.columns
 
@@ -149,11 +146,7 @@ def create_partitioned_csvs_from_dataframe(df,
             logger.info(f'Partitioned CSV written: {outfile}')
 
 
-def main(input_path,
-         filter_pattern,
-         time_dimension,
-         output_path,
-         filename):
+def main(input_path, filter_pattern, time_dimension, output_path, filename):
 
     # get directory paths
     input_path = get_absolute_path(dir=input_path)
@@ -171,7 +164,7 @@ def main(input_path,
     df = create_dataframe_from_csv(file_paths)
 
     # create partitioned csv files from dataframe
-    create_partitioned_csvs_from_dataframe(
+    create_partitioned_csv_files(
         df=df,
         output_path=output_path,
         filename=filename,
