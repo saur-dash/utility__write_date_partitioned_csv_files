@@ -178,9 +178,7 @@ def main(input_path, filter_pattern, time_dimension, output_path, filename):
 if __name__ == '__main__':
 
     main(
-        input_path=(
-            'local_path_to_source_files'
-        ),
+        input_path='local_path_to_source_files',
         filter_pattern='fact_transactions_2020',
         time_dimension='transaction_date',
         output_path='exports/fact_transactions',
