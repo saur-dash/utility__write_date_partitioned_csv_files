@@ -179,10 +179,10 @@ if __name__ == '__main__':
 
     main(
         input_path=(
-            '/home/saur/Documents/chiasma/for_partition__fact_bookings_v'
+            'local_path_to_source_files'
         ),
-        filter_pattern='fact_bookings_v_2020',
-        time_dimension='key_date_booked',
-        output_path='exports/fact_bookings_v',
-        filename='fact_bookings_v',
+        filter_pattern='fact_transactions_2020',
+        time_dimension='transaction_date',
+        output_path='exports/fact_transactions',
+        filename='fact_transactions',
     )
