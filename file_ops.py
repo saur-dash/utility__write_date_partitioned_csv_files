@@ -179,7 +179,7 @@ if __name__ == '__main__':
 
     main(
         input_path='local_path_to_source_files',
-        filter_pattern='fact_transactions_2020',
+        filter_pattern='fact_transactions',
         time_dimension='transaction_date',
         output_path='exports/fact_transactions',
         filename='fact_transactions',
