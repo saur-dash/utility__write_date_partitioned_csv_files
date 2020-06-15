@@ -14,6 +14,8 @@ def get_absolute_path(**kwargs):
     and keyword arguments passed in.
 
     Args:
+        **kwargs:
+            A list of key-value pairs to join into an absolute path.
 
     Returns:
         str
@@ -28,8 +30,10 @@ def get_file_paths(directory, filter_pattern):
     Create a list of filepaths for files matching specified filter_pattern.
 
     Args:
-        directory (str): Full path of directory containing files to match.
-        filter_pattern (str): Regex filter_pattern to match files.
+        directory (str):
+            Full path of directory containing files to match.
+        filter_pattern (str):
+            Regex filter_pattern to match files.
 
     Returns:
         list
@@ -50,8 +54,10 @@ def create_csv_from_dataframe(df, out_file, header=True):
     file is written.
 
     Args:
-        df (pandas.DataFrame): The pandas DataFrame to write to .csv file.
-        out_file (str): Full path of the destination .csv file.
+        df (pandas.DataFrame):
+            The pandas DataFrame to write to .csv file.
+        out_file (str):
+            Absolute path of the destination .csv file.
 
     Returns:
         None
@@ -96,7 +102,8 @@ def create_dataframe_from_csv(file_paths):
     files supplied all have the same table schema.
 
     Args:
-        file_paths (list): List of full paths to source data files.
+        file_paths (list):
+            List of full paths to source data files.
 
     Returns:
         pandas.DataFrame
@@ -123,6 +130,23 @@ def create_dataframe_from_csv(file_paths):
 
 
 def create_partitioned_csv_files(df, output_path, filename, time_dimension):
+    """
+    Writes a set of .csv files partitioned by year, month to the specified
+    directory and file name.
+
+    Args:
+        df (pandas.DataFrame):
+            The pandas DataFrame to write to .csv file.
+        output_path (str):
+            The directory to write partitioned .csv files to.
+        filename (str):
+            The filename to apply to the partitioned files.
+        time_dimension (str):
+            The date/datetime field to partition files on.
+
+    Returns:
+        None
+    """
 
     cols = df.columns
 
@@ -148,11 +172,9 @@ def create_partitioned_csv_files(df, output_path, filename, time_dimension):
 
 def main(input_path, filter_pattern, time_dimension, output_path, filename):
 
-    # get directory paths
     input_path = get_absolute_path(dir=input_path)
     output_path = get_absolute_path(dir=output_path)
 
-    # create a list of the csv file paths
     file_paths = get_file_paths(
         directory=input_path,
         filter_pattern=f'{filter_pattern}*.csv',
@@ -160,10 +182,8 @@ def main(input_path, filter_pattern, time_dimension, output_path, filename):
     for f in file_paths:
         logger.info(f)
 
-    # concatenate all csv files into a single dataframe
     df = create_dataframe_from_csv(file_paths)
 
-    # create partitioned csv files from dataframe
     create_partitioned_csv_files(
         df=df,
         output_path=output_path,
@@ -175,9 +195,11 @@ def main(input_path, filter_pattern, time_dimension, output_path, filename):
 if __name__ == '__main__':
 
     main(
-        input_path='local_path_to_source_files',
-        filter_pattern='fact_transactions',
-        time_dimension='transaction_date',
-        output_path='exports/fact_transactions',
-        filename='fact_transactions',
+        input_path=(
+            '/home/saur/Documents/chiasma/for_partition__fact_bookings_v'
+        ),
+        filter_pattern='fact_bookings_v_2020',
+        time_dimension='key_date_booked',
+        output_path='exports/fact_bookings_v',
+        filename='fact_bookings_v',
     )
