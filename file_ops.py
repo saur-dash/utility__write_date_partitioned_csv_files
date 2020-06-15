@@ -142,7 +142,7 @@ def create_partitioned_csv_files(df, output_path, filename, time_dimension):
         filename (str):
             The filename to apply to the partitioned files.
         time_dimension (str):
-            The date/datetime field to partition files on.
+            The date/datetime field to partition files by.
 
     Returns:
         None
