@@ -201,7 +201,7 @@ if __name__ == '__main__':
 
     main(
         input_path=(
-            '/home/saur/Documents/chiasma/for_partition__fact_bookings_v'
+            '/home/for_partition__fact_bookings_v'
         ),
         filter_pattern='fact_bookings_v_2020',
         time_dimension='key_date_booked',
