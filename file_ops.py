@@ -172,9 +172,11 @@ def create_partitioned_csv_files(df, output_path, filename, time_dimension):
 
 def main(input_path, filter_pattern, time_dimension, output_path, filename):
 
+    # get absolute directory paths
     input_path = get_absolute_path(dir=input_path)
     output_path = get_absolute_path(dir=output_path)
 
+    # generate a list of absolute file paths
     file_paths = get_file_paths(
         directory=input_path,
         filter_pattern=f'{filter_pattern}*.csv',
@@ -182,8 +184,10 @@ def main(input_path, filter_pattern, time_dimension, output_path, filename):
     for f in file_paths:
         logger.info(f)
 
+    # concatenate all .csv files into a single dataframe
     df = create_dataframe_from_csv(file_paths)
 
+    # write partitioned .csv files
     create_partitioned_csv_files(
         df=df,
         output_path=output_path,
