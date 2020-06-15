@@ -33,7 +33,7 @@ def get_file_paths(directory, filter_pattern):
         directory (str):
             Full path of directory containing files to match.
         filter_pattern (str):
-            Regex filter_pattern to match files.
+            Regex search pattern to match files.
 
     Returns:
         list
