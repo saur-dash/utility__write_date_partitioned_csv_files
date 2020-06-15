@@ -157,6 +157,7 @@ def create_partitioned_csv_files(df, output_path, filename, time_dimension):
 
         for month in set(df['month']):
 
+            # TODO: Add conditional to avoid writing empty tables?
             outfile = f'{output_path}/{filename}_{year}_{month:02}.csv'
 
             df.loc[(df['year'] == year) & (df['month'] == month)].to_csv(
